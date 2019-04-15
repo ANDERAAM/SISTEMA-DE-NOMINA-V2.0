@@ -1,0 +1,75 @@
+#include <iostream>
+#include <string.h>
+#include <windows.h>
+#include <fstream>
+#include <ctype.h>
+#include <conio.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <sstream>
+#include <vector>
+using namespace std;
+
+typedef struct Empleados{
+    long long Cedula ;
+    long long Salario;
+    long long Bonificaciones;
+    long long Descuentos;
+    string Nombre ;
+    string NombreEmpresa ;
+    string FechaNacimiento;
+    string Departamento;
+    string Cod1;
+    string Cod2; 
+    struct Empleados *izq , *der ;
+
+}*ABB;
+
+ABB1 Empresas = NULL;
+
+Empleados *CrearEmpleados(Empleados *&Arbol ,long long Cedula, long long Salario,long long  Bonificaciones , long long Descuentos ,string Nombre ,string NombreEmpresa , string FechaNacimiento , string Departamento , string Cod1,string Cod2 ){
+    Empleados *Empleado              =   new Empleados();
+    Empleado->Nombre                 =   Nombre;
+    Empleado->Cedula                 =   Cedula;
+    Empleado->NombreEmpresa          =   NombreEmpresa;
+    Empleado->FechaNacimiento        =   FechaNacimiento;
+    Empleado->Departamento           =   Departamento;
+    Empleado->Salario                =   Salario;
+    Empleado->Bonificaciones         =   Bonificaciones;
+    Empleado->Descuentos             =   Descuentos;
+    Empleado->Cod1                   =   Cod1;
+    Empleado->Cod2                   =   Cod2;
+    Empleado->der                    =   NULL;
+    Empleado->izq                    =   NULL;
+    return Empleado;
+}
+void InsertarEmpleados(Empleados *&Arbol,long long Cedula,long long Salario,long long Bonificaciones , long long Descuentos ,string Nombre ,string NombreEmpresa , string FechaNacimiento , string Departamento ,string Cod1 , string Cod2){
+ if   (Arbol == NULL){
+      Arbol = CrearEmpleados(*&Arbol,Cedula,Salario,Bonificaciones,Descuentos ,Nombre ,NombreEmpresa ,FechaNacimiento ,Departamento ,Cod1,Cod2);
+      }else if (Cedula < Arbol->Cedula) {
+      InsertarEmpleados(*&Arbol->izq,Cedula,Salario,Bonificaciones,Descuentos ,Nombre ,NombreEmpresa ,FechaNacimiento ,Departamento ,Cod1,Cod2);
+      }else if (Cedula > Arbol->Cedula) {
+      InsertarEmpleados(*&Arbol->der,Cedula,Salario,Bonificaciones,Descuentos ,Nombre ,NombreEmpresa ,FechaNacimiento ,Departamento ,Cod1,Cod2);
+      }
+}
+
+void CrearEmpleado();
+void Empresa(int x);
+void Departamento(int x);
+
+
+void gotoxy(int x,int y){
+      HANDLE hcon;
+      hcon = GetStdHandle(STD_OUTPUT_HANDLE);
+      COORD dwPos;
+      dwPos.X = x;
+      dwPos.Y= y;
+      SetConsoleCursorPosition(hcon,dwPos);
+ }
+ 
+ 
+ int main(){
+   
+   
+   getch();
+ }
